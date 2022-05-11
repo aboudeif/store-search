@@ -11,17 +11,19 @@ class SearchController extends Controller
     // onetime run code to insert 60 products
     #include "products_list.php";
     #Product::insert($products_list);
+  $search_word = $request->input('search');
     $result = '';
-    if($request->get('userid')){
-    $search_word = $request->input('search');
     if(array_key_exists('search',$_GET))
       if(strlen($request->input('search'))){
         $result = Product::where('name','like','%'.$request->input('search').'%')->get('name');
+        if(! isset($result[0]->name)){
+          unset($result);
+          $result = 'Search result is not found';
+        }
       }
       else{
-        $result = ['name'=>'Search result is not found'];
+        $result = 'Search result is not found';
       }
-    }
     return view('home',['result'=> $result]);
   }
 }

@@ -4,12 +4,12 @@
             {{ __('Home') }}
         </h2>
     </x-slot>
-    <x-slot name="Home">       
+           
     <div class="container mx-auto items-center text-center  mb-20">
             <div class="search-container py-20"></div>
               <h1 class="font-bold text-2xl text-green-700 pb-10"> Welcome to our Store</h1>
                 <form action="{{ route('search') }}" id="search-form" method="GET">
-                    <input type="text" name="search" id="search" class="focus:outline-none border border-green-500 w-96 p-3 rounded text-gray-700" placeholder="search our products">
+                    <input type="text" name="search" id="search" class="focus:outline-none border border-green-500 w-96 p-3 rounded text-gray-700" placeholder="search our products" value="{{ $_GET['search'] ?? '' }}">
                     <button type="submit" class="bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-3 px-4 border border-green-500 hover:border-transparent rounded">Search</button>
                 </form> 
             </div>
@@ -26,5 +26,5 @@
         
       </div>
     </div>
-  </x-slot>
+  
 </x-app-layout>

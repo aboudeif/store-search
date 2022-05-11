@@ -1,8 +1,14 @@
 <x-guest-layout>
     <x-auth-card>
+      <style type="text/css">.min-h-screen {background:
+        linear-gradient(red, transparent),
+        linear-gradient(to top left, lime, transparent),
+        linear-gradient(to top right, blue, transparent);
+    background-blend-mode: screen;}</style>
         <x-slot name="logo">
             <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+<!--                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" /> -->
+              <img class="w-20 h-20 fill-current text-green-500" src="https://indyme.com/wp-content/uploads/2020/11/shopping-cart-icon.png" alt="Store logo"></img>
             </a>
         </x-slot>
 
