@@ -13,17 +13,21 @@ class SearchController extends Controller
     #Product::insert($products_list);
   $search_word = $request->input('search');
     $result = '';
+    $page = $_GET['page'] ?? 0;
     if(array_key_exists('search',$_GET))
       if(strlen($request->input('search'))){
-        $result = Product::where('name','like','%'.$request->input('search').'%')->get('name');
+        if($page <= 0)
+        $result = Product::where('name','like','%'.$request->input('search').'%')->skip(0*$page++)->take(10)->get('name');
+        else
+        $result = Product::where('name','like','%'.$request->input('search').'%')->skip(10*$page++)->take(10)->get('name');
         if(! isset($result[0]->name)){
           unset($result);
-          $result = 'Search result is not found';
+          $result = "No results for your search, Tray to use mobile brand ";
         }
       }
       else{
-        $result = 'Search result is not found';
+        $result = "No results for your search, Tray to use mobile brand ";
       }
-    return view('home',['result'=> $result]);
+    return view('home',['result'=> $result,'page'=>$page]);
   }
 }
